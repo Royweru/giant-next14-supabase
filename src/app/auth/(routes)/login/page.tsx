@@ -1,5 +1,5 @@
 "use client";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/app/auth/(routes)/supabase";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -42,17 +42,22 @@ const LoginPage = () => {
             placeholder=" enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className=" text-lg font-semibold text-white bg-gray-900"
+            className=" text-lg font-semibold text-white p-6 bg-gray-100"
           />
           <input
             type="text"
             placeholder=" enter your password"
             value={pwd}
             onChange={(e) => setPwd(e.target.value)}
-            className=" text-lg font-semibold text-white bg-gray-900"
+            className=" text-lg font-semibold text-white p-6 bg-gray-100"
           />
-          <button onClick={login}>SUBMIT</button>
+          <button onClick={login}>LOGIN</button>
         </form>
+        <div className=" w-full underline font-bold italic hover:cursor-pointer" >
+          <a href="/auth/sign-up">
+            Have no account sign up
+          </a>
+        </div>
       </div>
     </div>
   );
