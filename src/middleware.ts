@@ -12,7 +12,7 @@ export async function middleware(req:NextRequest) {
     } = await supabase.auth.getSession()
 
     console.log(session)
-    
+
     if(!session){
         return NextResponse.rewrite(new URL('/login',req.url))
     }
@@ -22,5 +22,5 @@ export async function middleware(req:NextRequest) {
 
 
 export const config = {
-    matcher:['/((?!api|_next/static|_next/image|favicon.ico).*']
+    matcher:['/((?!api|_next/static|_next/image|favicon.ico).*)']
 }
