@@ -1,4 +1,4 @@
-import { supabase } from "@/app/auth/(routes)/supabase";
+import { supabase } from "@/lib/supabase";
 import Image from "next/image";
 
 export default function Home() {
