@@ -3,8 +3,11 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
+
 const LoginPage = () => {
   const router = useRouter();
+
+
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
 
