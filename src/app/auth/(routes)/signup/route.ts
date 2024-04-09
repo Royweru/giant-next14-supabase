@@ -11,7 +11,7 @@ export async function POST(req:NextRequest) {
     const formData = await req.formData()
 
     const email = String(formData.get('email'))
-    const password = String(formData.get('password'))
+    const password = String(formData.get('pwd'))
 
     const supabase = createRouteHandlerClient({
         cookies:()=>cookieStore
@@ -23,6 +23,7 @@ export async function POST(req:NextRequest) {
         emailRedirectTo:`${url.origin}/auth/callback`
       }
     })
+    console.log(response)
     return NextResponse.redirect(url.origin,{
         status:301
     })
