@@ -15,19 +15,21 @@ const LoginPage = () => {
     try {
       let{data:dataUser,error} = await supabase
        .auth
-       .signUp({
+       .signInWithOtp({
         email:email,
-        password:pwd
+        options:{
+          shouldCreateUser:true
+        }
        })
        if(dataUser){
-        console.log(dataUser)
+        const{user} = dataUser
+        if(user){
+          setSuccess(true)
+        }
        }
        if(error){
         throw new Error("Cannot sign you up!")
        }
-       setEmail("")
-       setPwd("")
-       router.refresh()
     } catch (error) {
       console.log(error)
     }
@@ -36,7 +38,7 @@ const LoginPage = () => {
   return (
     <div className=" w-full h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-blue-200 via-black to-sky-950">
       <div className=" text-2xl text-sky-600 font-semibold italic">
-         LOGIN
+         SIGN UP
       </div>
       <div>
 
@@ -61,15 +63,19 @@ const LoginPage = () => {
             onChange={(e) => setPwd(e.target.value)}
             className=" text-lg font-semibold text-black rounded-xl p-6 bg-gray-100"
           />
-          <button onClick={login} className=" p-5 bg-emerald-200  text-white">
-             SIGN UP
-          </button>
+          <input type="submit" onClick={login} className=" hover:cursor-pointer "/>
         </form>
         {/* <div className=" w-full underline font-bold italic hover:cursor-pointer" >
           <a href="/auth/sign-up">
             Have no account sign up
           </a>
-        </div> */}  
+        </div> */}
+        {success &&
+             <div className=" bg-emerald-300 w-full p-4 font-semibold italic text-sm text-black text-center">
+                An email has been sent to {email}, to complete your login
+             </div>
+        }
+      
       </div>
     </div>
   );
