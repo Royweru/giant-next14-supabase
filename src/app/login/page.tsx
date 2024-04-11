@@ -20,6 +20,7 @@ const LoginPage = () => {
         password:pwd
        })
        if(dataUser){
+        setSuccess(true)
         console.log(dataUser)
        }
        if(error){
@@ -65,11 +66,7 @@ const LoginPage = () => {
              SIGN UP
           </button>
         </form>
-        {/* <div className=" w-full underline font-bold italic hover:cursor-pointer" >
-          <a href="/auth/sign-up">
-            Have no account sign up
-          </a>
-        </div> */}  
+    
       </div>
     </div>
   );
