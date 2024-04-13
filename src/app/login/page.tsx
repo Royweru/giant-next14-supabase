@@ -11,11 +11,12 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
  const [success,setSuccess] = useState<boolean>(false)
+
   const login = async () => {
     try {
       let{data:dataUser,error} = await supabase
        .auth
-       .signUp({
+       .signInWithPassword({
         email:email,
         password:pwd
        })
@@ -24,7 +25,7 @@ const LoginPage = () => {
         console.log(dataUser)
        }
        if(error){
-        throw new Error("Cannot sign you up!")
+        throw new Error("Cannot sign you in!")
        }
        setEmail("")
        setPwd("")
@@ -42,9 +43,7 @@ const LoginPage = () => {
       <div>
 
         <form
-          
           className=" flex flex-col rounded-2xl bg-slate-200 gap-y-4 p-12"
-      
         >
           <input
             type="text"
@@ -62,11 +61,17 @@ const LoginPage = () => {
             onChange={(e) => setPwd(e.target.value)}
             className=" text-lg font-semibold text-black rounded-xl p-6 bg-gray-100"
           />
-          <button onClick={login} className=" p-5 bg-emerald-200  text-white">
-             SIGN UP
-          </button>
+         {success&&(
+          <div className=" w-full p-3 rounded-md flex items-center justify-center font-semibold text-xl font-sans">
+            Hey {email} you have successfully signed up check verification email
+          </div>
+         )}
         </form>
-    
+          <div className=" w-full flex justify-center my-5">
+          <button onClick={login} className=" p-5 bg-emerald-200  text-white rounded-full">
+             LOGIN
+          </button>
+          </div>
       </div>
     </div>
   );
