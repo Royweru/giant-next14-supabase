@@ -4,6 +4,11 @@ import { NextResponse,NextRequest } from "next/server";
 
 export async function middleware(req:NextRequest) {
      const res = NextResponse.next()
+     const publicRoutes = ["/reset","/login","/signup"]
+
+     if(publicRoutes.includes(req.nextUrl.pathname)){
+         return res
+     }
 
      const supabase = createMiddlewareClient({req,res})
 

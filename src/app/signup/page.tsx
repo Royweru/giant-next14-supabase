@@ -9,6 +9,7 @@ const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [success, setSuccess] = useState<boolean>(false);
+
   const signUp = async () => {
     try {
       let { data: dataUser, error } = await supabase.auth.signUp({
@@ -29,6 +30,7 @@ const SignUpPage = () => {
       console.log(error);
     }
   };
+  
   return (
     <div className=" w-full h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-blue-200 via-black to-sky-950">
       <div className=" text-2xl text-sky-600 font-semibold italic">SIGN UP</div>
