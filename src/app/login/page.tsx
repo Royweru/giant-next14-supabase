@@ -8,12 +8,9 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const [err, setErr] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [resetPwd, setResetPwd] = useState<boolean>(false);
-  const [newPwd, setNewPwd] = useState("");
-  const [confirmPwd, setConfirmPwd] = useState("");
-
-  const [showPwd, setShowPwd] = useState<boolean>(false);
 
   const login = async () => {
     try {
@@ -32,6 +29,7 @@ const LoginPage = () => {
       setPwd("");
       router.refresh();
     } catch (error) {
+      setErr(true);
       console.log(error);
     }
   };
@@ -75,10 +73,9 @@ const LoginPage = () => {
                 onChange={(e) => setPwd(e.target.value)}
                 className=" text-lg font-semibold text-black rounded-xl p-6 bg-gray-100"
               />
-              {success && (
-                <div className=" w-full p-3 rounded-md flex items-center justify-center font-semibold text-xl font-sans">
-                  Hey {email} you have successfully signed up check verification
-                  email
+              {err && (
+                <div className=" bg-rose-300 font-semibold text-2xl italic p-5 rounded-md text-center">
+                  Oopsy an error has occured cannot sign you in
                 </div>
               )}
             </form>
