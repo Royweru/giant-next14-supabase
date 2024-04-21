@@ -30,7 +30,7 @@ const SignUpPage = () => {
       console.log(error);
     }
   };
-  
+
   return (
     <div className=" w-full h-screen flex flex-col items-center justify-center bg-gradient-to-bl from-blue-200 via-black to-sky-950">
       <div className=" text-2xl text-sky-600 font-semibold italic">SIGN UP</div>
@@ -38,7 +38,6 @@ const SignUpPage = () => {
         <form className=" flex flex-col rounded-2xl bg-slate-200 gap-y-4 p-12">
           <input
             type="text"
-           
             placeholder=" enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -53,22 +52,21 @@ const SignUpPage = () => {
             className=" text-lg font-semibold text-black rounded-xl p-6 bg-gray-100"
             autoComplete="false"
           />
+          {success && (
+            <div className=" w-full p-5 font-semibold  text-2xl text-white bg-emerald-700">
+              You have successfully signed up check for an email and follow the
+              link for verification
+            </div>
+          )}
+        </form>
+        <div className=" my-3 font-semibold text-center p-4">
           <button onClick={signUp} className=" p-5 bg-emerald-200  text-white">
             SIGN UP
           </button>
-        </form>
-
-        {success && (
-          <div className=" w-full p-5 font-semibold  text-2xl text-black">
-            You have successfully signed up
-            <span className=" ml-2 font-bold text-sm text-gray-800 underline ">
-              <a href="/login">Login to your account </a>
-            </span>``
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
 };
 
-export default SignUpPage
+export default SignUpPage;
